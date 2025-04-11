@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Opportunités produits" icon-name="standard:opportunity">
+        <div class="container">
+            <!-- Message d'avertissement si une quantité dépasse le stock disponible -->
+            <template if:true={warningMessage}>
+                <div class="slds-box slds-theme_warning slds-m-bottom_medium slds-text-align_center">
+                    <p class="slds-text-heading_small">{warningMessage}</p>
+                </div>
+            </template>
+
+            <!-- Vérifier si OpportunityLineItem a des données -->
+            <template if:true={OpportunityLineItem.length}>
+                <lightning-datatable 
+                    class="datatable custom-table"
+                    data={OpportunityLineItem}
+                    columns={columns}
+                    key-field="Id"
+                    onrowaction={handleRowAction}>
+                </lightning-datatable>
+            </template>
+
+            <!-- Affichage du message si aucune opportunité n'est disponible -->
+            <template if:true={Message}>
+                <div class="slds-box slds-m-bottom_medium slds-text-align_center">
+                    <p class="slds-text-heading_small">{Message}</p>
+                </div>
+            </template>
+            
+        </div>
+    </lightning-card>
+</template>
+
+
