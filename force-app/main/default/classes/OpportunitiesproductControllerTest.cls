@@ -50,13 +50,13 @@ private class OpportunitiesproductControllerTest {
         
         
            // Vérifier que la ligne a bien été supprimée
-    try {
-        OpportunityLineItem deletedOli = [SELECT Id FROM OpportunityLineItem WHERE Id = :oli.Id LIMIT 1];
-        System.assert(false, 'L\'élément n\'aurait pas dû exister après suppression');
-    } catch (QueryException e) {
-        // Si une exception est levée, cela signifie que l'élément a été correctement supprimé
-        System.assert(true);
-    }
+          
+        
+        Integer remainingLines = [SELECT COUNT() FROM OpportunityLineItem WHERE Id = :oli.Id];
+        
+        // Si la ligne a bien été supprimée, le compteur devrait être 0
+        System.assertEquals(0, remainingLines, 'La ligne d\'opportunité devrait avoir été supprimée.');
+    
         }
         
 
