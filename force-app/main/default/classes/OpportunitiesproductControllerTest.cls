@@ -23,7 +23,8 @@ private class OpportunitiesproductControllerTest {
     
             System.assertEquals(1, result.size(), 'Il devrait y avoir 1 ligne d\'opportunité.');
         }
-    
+    // Test de push depuis le bon dossier
+
         @isTest
         static void testDeleteOpportunityLineItem() {
             // Créer une opportunité
